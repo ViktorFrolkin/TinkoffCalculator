@@ -9,6 +9,7 @@ import UIKit
 
 enum CalculationError:  Error {
     case divideByZero
+    
 }
 
 enum Operation: String {
@@ -50,14 +51,19 @@ class ViewController: UIViewController {
     
     guard let buttonText = sender.currentTitle else { return
             }
+        if label.text == "0" && buttonText == "," || label.text == "Ошибка" && buttonText == "," {
+            label.text = "0,"
+        }
         if buttonText == "," && label.text?.contains(",") == true {
             return
         }
-        if label.text == "0" {
+            
+        if label.text == "0" || label.text == "Ошибка" {
             label.text = buttonText
         } else {
             label.text?.append(buttonText)
         }
+        
         
     }
     
