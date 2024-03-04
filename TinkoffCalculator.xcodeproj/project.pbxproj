@@ -11,6 +11,9 @@
 		221598742B934D7F001FFA73 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 22520B732B8E2ACF00FC7FCD /* Main.storyboard */; };
 		221598752B934DFB001FFA73 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22520B712B8E2ACF00FC7FCD /* ViewController.swift */; };
 		221598762B934DFC001FFA73 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22520B712B8E2ACF00FC7FCD /* ViewController.swift */; };
+		22206E4D2B9492CD0040DB9F /* CalculationsListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22206E4C2B9492CD0040DB9F /* CalculationsListViewController.swift */; };
+		22206E4E2B9492CD0040DB9F /* CalculationsListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22206E4C2B9492CD0040DB9F /* CalculationsListViewController.swift */; };
+		22206E4F2B9492CD0040DB9F /* CalculationsListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22206E4C2B9492CD0040DB9F /* CalculationsListViewController.swift */; };
 		22520B6E2B8E2ACE00FC7FCD /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22520B6D2B8E2ACE00FC7FCD /* AppDelegate.swift */; };
 		22520B702B8E2ACF00FC7FCD /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22520B6F2B8E2ACF00FC7FCD /* SceneDelegate.swift */; };
 		22520B722B8E2ACF00FC7FCD /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22520B712B8E2ACF00FC7FCD /* ViewController.swift */; };
@@ -40,6 +43,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		22206E4C2B9492CD0040DB9F /* CalculationsListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalculationsListViewController.swift; sourceTree = "<group>"; };
 		22520B6A2B8E2ACE00FC7FCD /* TinkoffCalculator.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TinkoffCalculator.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		22520B6D2B8E2ACE00FC7FCD /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		22520B6F2B8E2ACF00FC7FCD /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -107,6 +111,7 @@
 				22520B6F2B8E2ACF00FC7FCD /* SceneDelegate.swift */,
 				22520B712B8E2ACF00FC7FCD /* ViewController.swift */,
 				22520B732B8E2ACF00FC7FCD /* Main.storyboard */,
+				22206E4C2B9492CD0040DB9F /* CalculationsListViewController.swift */,
 				22520B762B8E2AD200FC7FCD /* Assets.xcassets */,
 				22520B782B8E2AD200FC7FCD /* LaunchScreen.storyboard */,
 				22520B7B2B8E2AD200FC7FCD /* Info.plist */,
@@ -264,6 +269,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				22206E4D2B9492CD0040DB9F /* CalculationsListViewController.swift in Sources */,
 				22520B722B8E2ACF00FC7FCD /* ViewController.swift in Sources */,
 				22520B6E2B8E2ACE00FC7FCD /* AppDelegate.swift in Sources */,
 				22520B702B8E2ACF00FC7FCD /* SceneDelegate.swift in Sources */,
@@ -274,6 +280,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				22206E4E2B9492CD0040DB9F /* CalculationsListViewController.swift in Sources */,
 				221598752B934DFB001FFA73 /* ViewController.swift in Sources */,
 				22520B882B8E2C4F00FC7FCD /* TinkoffCalculatorTests.swift in Sources */,
 			);
@@ -283,6 +290,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				22206E4F2B9492CD0040DB9F /* CalculationsListViewController.swift in Sources */,
 				221598762B934DFC001FFA73 /* ViewController.swift in Sources */,
 				22520B972B8E2C5D00FC7FCD /* TinkoffCalculatorUITestsLaunchTests.swift in Sources */,
 				22520B952B8E2C5D00FC7FCD /* TinkoffCalculatorUITests.swift in Sources */,

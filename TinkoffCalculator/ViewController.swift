@@ -105,6 +105,11 @@ class ViewController: UIViewController {
         calculationHistory.removeAll()
     }
    
+    @IBAction func unwindAction(unwindSegue: UIStoryboardSegue){
+        
+    }
+    
+    
     @IBOutlet weak var label: UILabel!
     
     var calculationHistory: [CalculationHistoryItem] = []
@@ -125,6 +130,12 @@ class ViewController: UIViewController {
         
         resetLabelText()
         
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        guard segue.identifier == "CALCULATIONS_LIST",
+              let calculationsListVC = segue.destination as? CalculationListViewController else { return }
+        calculationsListVC.result = label.text
     }
     
     func calculate ()  throws -> Double {
