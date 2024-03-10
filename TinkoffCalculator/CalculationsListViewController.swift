@@ -12,11 +12,7 @@ class CalculationsListViewController: UIViewController {
     var result: String?
     
     @IBOutlet weak var calculationLabel: UILabel!
-    
-    
-    
-    
-    
+   
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
         super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
         initialize()
@@ -33,7 +29,7 @@ class CalculationsListViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        if result != "0"{
+        if result != nil{
             calculationLabel.text = result} else {
                 calculationLabel.text = "NoData"
             }

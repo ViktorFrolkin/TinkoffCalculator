@@ -43,9 +43,12 @@ enum CalculationHistoryItem {
     
     case number (Double)
     case operation (Operation)
+   
+    
 }
 
 class ViewController: UIViewController {
+    var history = [String]()
     
     @IBAction func buttonPressed(_ sender: UIButton) {
     
@@ -90,6 +93,7 @@ class ViewController: UIViewController {
     
     @IBAction func calculateButtonPressed() {
         guard
+            
             let labelText = label.text,
             let labelNumber = numberFormatter.number(from: labelText)?.doubleValue
             else { return }
@@ -97,8 +101,9 @@ class ViewController: UIViewController {
             calculationHistory.append(.number(labelNumber))
         do {
             let result = try calculate()
-            
+            let historyItem = numberFormatter.string(from:  NSNumber(value: result))
             label.text = numberFormatter.string(from:   NSNumber(value: result))
+            history.append("\(historyItem!)")
         } catch {
             label.text = "Ошибка"
         }
@@ -140,7 +145,7 @@ class ViewController: UIViewController {
         let sb = UIStoryboard(name: "Main", bundle: nil)
         let calculationsListVC = sb.instantiateViewController(identifier: "CalculationsListViewController")
         if let vc = calculationsListVC as? CalculationsListViewController{
-            vc.result = label.text
+            vc.result = history.last
         }
         
         navigationController?.pushViewController(calculationsListVC, animated:  true)
