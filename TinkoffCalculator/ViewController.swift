@@ -105,9 +105,6 @@ class ViewController: UIViewController {
         calculationHistory.removeAll()
     }
    
-    @IBAction func unwindAction(unwindSegue: UIStoryboardSegue){
-        
-    }
     
     
     @IBOutlet weak var label: UILabel!
@@ -132,29 +129,40 @@ class ViewController: UIViewController {
         
     }
     
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        guard segue.identifier == "CALCULATIONS_LIST",
-              let calculationsListVC = segue.destination as? CalculationListViewController else { return }
-        calculationsListVC.result = label.text
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        navigationController?.setNavigationBarHidden(true, animated: false)
+    }
+    
+    
+    
+    @IBAction func showCalculationsList(_ sender: Any) {
+        let sb = UIStoryboard(name: "Main", bundle: nil)
+        let calculationsListVC = sb.instantiateViewController(identifier: "CalculationsListViewController")
+        if let vc = calculationsListVC as? CalculationsListViewController{
+            vc.result = label.text
+        }
+        
+        navigationController?.pushViewController(calculationsListVC, animated:  true)
     }
     
     func calculate ()  throws -> Double {
-        guard case .number(let firstNumber) = calculationHistory[0] else { return 0}
+           guard case .number(let firstNumber) = calculationHistory[0] else { return 0}
 
-        var currentResult = firstNumber
-        
-        for index in stride(from: 1, to: calculationHistory.count - 1, by:  2) {
-            guard
-                case .operation(let operation) = calculationHistory[index],
-                case .number(let number) = calculationHistory[index + 1]
-                else { break }
-            
-            currentResult = try operation.calculate(currentResult, number2: number)
-        }
-        
-        return currentResult
+           var currentResult = firstNumber
+           
+           for index in stride(from: 1, to: calculationHistory.count - 1, by:  2) {
+               guard
+                   case .operation(let operation) = calculationHistory[index],
+                   case .number(let number) = calculationHistory[index + 1]
+                   else { break }
+               
+               currentResult = try operation.calculate(currentResult, number2: number)
+           }
+           
+           return currentResult
 
-    }
+       }
 
     func resetLabelText() {
         label.text = "0"

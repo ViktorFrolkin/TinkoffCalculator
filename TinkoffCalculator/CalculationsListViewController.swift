@@ -7,15 +7,15 @@
 
 import UIKit
 
-class CalculationListViewController: UIViewController {
+class CalculationsListViewController: UIViewController {
     
     var result: String?
     
     @IBOutlet weak var calculationLabel: UILabel!
     
-   
     
-   
+    
+    
     
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
         super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
@@ -33,6 +33,19 @@ class CalculationListViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-       calculationLabel.text = result
+        if result != "0"{
+            calculationLabel.text = result} else {
+                calculationLabel.text = "NoData"
+            }
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        navigationController?.setNavigationBarHidden(false, animated: false)
+    }
+    
+    @IBAction func dismissVC(_ sender: Any) {
+        navigationController?.popViewController(animated: true)
     }
 }
+
