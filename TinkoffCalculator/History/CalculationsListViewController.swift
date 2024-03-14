@@ -102,8 +102,6 @@ extension CalculationsListViewController: UITableViewDataSource {
         cell.configure(with: expressionToString(historyItem.expression), result: String(historyItem.result))
         return cell
     }
-   // func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-   //     return "hxx"
-    
+
     
 }
