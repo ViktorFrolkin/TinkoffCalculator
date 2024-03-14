@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="138" id="dU9-34-zId" customClass="HistoryTableViewCell" customModule="TinkoffCalculator" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="393" height="138"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="dU9-34-zId" id="gtS-hw-8et">
+                <rect key="frame" x="0.0" y="0.0" width="393" height="138"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PUv-JS-Ma7">
+                        <rect key="frame" x="15" y="33" width="42" height="21"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bme-Jh-9MJ">
+                        <rect key="frame" x="15" y="84" width="42" height="21"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="PUv-JS-Ma7" firstAttribute="leading" secondItem="gtS-hw-8et" secondAttribute="leading" constant="15" id="1Hr-oQ-RjV"/>
+                    <constraint firstItem="bme-Jh-9MJ" firstAttribute="top" secondItem="gtS-hw-8et" secondAttribute="centerY" constant="15" id="D2x-qv-gXl"/>
+                    <constraint firstItem="bme-Jh-9MJ" firstAttribute="leading" secondItem="gtS-hw-8et" secondAttribute="leading" constant="15" id="EMA-qB-BrT"/>
+                    <constraint firstItem="PUv-JS-Ma7" firstAttribute="bottom" secondItem="gtS-hw-8et" secondAttribute="centerY" constant="-15" id="U8x-61-sks"/>
+                </constraints>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="expressionLabel" destination="bme-Jh-9MJ" id="V6H-HZ-S6x"/>
+                <outlet property="resultLabel" destination="PUv-JS-Ma7" id="04U-t2-139"/>
+            </connections>
+            <point key="canvasLocation" x="-631.29770992366412" y="-78.873239436619727"/>
+        </tableViewCell>
+    </objects>
+</document>

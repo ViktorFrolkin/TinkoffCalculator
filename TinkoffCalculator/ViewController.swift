@@ -43,12 +43,11 @@ enum CalculationHistoryItem {
     
     case number (Double)
     case operation (Operation)
-   
-    
 }
 
 class ViewController: UIViewController {
-    var history = [String]()
+    var calculationHistory: [CalculationHistoryItem] = []
+    var calculations: [(expression: [CalculationHistoryItem], result: Double)] = []
     
     @IBAction func buttonPressed(_ sender: UIButton) {
     
@@ -101,9 +100,8 @@ class ViewController: UIViewController {
             calculationHistory.append(.number(labelNumber))
         do {
             let result = try calculate()
-            let historyItem = numberFormatter.string(from:  NSNumber(value: result))
             label.text = numberFormatter.string(from:   NSNumber(value: result))
-            history.append("\(historyItem!)")
+            calculations.append((calculationHistory, result))
         } catch {
             label.text = "Ошибка"
         }
@@ -113,8 +111,9 @@ class ViewController: UIViewController {
     
     
     @IBOutlet weak var label: UILabel!
+    @IBOutlet var historyButton: UIButton!
     
-    var calculationHistory: [CalculationHistoryItem] = []
+  
     
     lazy var numberFormatter: NumberFormatter = {
         let numberFormatter = NumberFormatter()
@@ -131,7 +130,7 @@ class ViewController: UIViewController {
         // Do any additional setup after loading the view.
         
         resetLabelText()
-        
+        historyButton.accessibilityIdentifier = "historyButton"
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -145,7 +144,7 @@ class ViewController: UIViewController {
         let sb = UIStoryboard(name: "Main", bundle: nil)
         let calculationsListVC = sb.instantiateViewController(identifier: "CalculationsListViewController")
         if let vc = calculationsListVC as? CalculationsListViewController{
-            vc.result = history.last
+            vc.calculations = calculations
         }
         
         navigationController?.pushViewController(calculationsListVC, animated:  true)

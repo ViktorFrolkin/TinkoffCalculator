@@ -308,6 +308,7 @@
                         <barButtonItem key="backBarButtonItem" title="Калькулятор" id="rD8-wX-emW"/>
                     </navigationItem>
                     <connections>
+                        <outlet property="historyButton" destination="62y-a7-kHp" id="vgW-lT-p5M"/>
                         <outlet property="label" destination="ega-ow-4gX" id="Xkl-eh-9Cg"/>
                     </connections>
                 </viewController>
@@ -323,47 +324,24 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zSH-Kw-C1Z">
-                                <rect key="frame" x="207" y="448" width="0.0" height="0.0"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="25"/>
-                                <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qWE-VJ-0yv">
-                                <rect key="frame" x="147.5" y="530" width="119" height="44"/>
-                                <color key="backgroundColor" systemColor="systemOrangeColor"/>
-                                <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="plain" title="Закрыть">
-                                    <fontDescription key="titleFontDescription" type="system" pointSize="25"/>
-                                    <color key="baseForegroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                </buttonConfiguration>
-                                <connections>
-                                    <action selector="dismissVC:" destination="0J9-8g-se1" eventType="touchUpInside" id="iQJ-ew-yYf"/>
-                                </connections>
-                            </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Результат:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MnJ-Qt-DZ0">
-                                <rect key="frame" x="147.5" y="368" width="119" height="30"/>
-                                <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="25"/>
-                                <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <nil key="highlightedColor"/>
-                            </label>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="cJ0-9J-p5A">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="814"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            </tableView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="hVc-c1-lQj"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <color key="tintColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="zSH-Kw-C1Z" firstAttribute="centerX" secondItem="8so-1n-7FW" secondAttribute="centerX" id="09w-Y4-HS8"/>
-                            <constraint firstItem="zSH-Kw-C1Z" firstAttribute="top" secondItem="MnJ-Qt-DZ0" secondAttribute="bottom" constant="50" id="9cY-Sv-ec5"/>
-                            <constraint firstItem="qWE-VJ-0yv" firstAttribute="centerX" secondItem="8so-1n-7FW" secondAttribute="centerX" id="9w4-D9-R0h"/>
-                            <constraint firstItem="MnJ-Qt-DZ0" firstAttribute="centerX" secondItem="8so-1n-7FW" secondAttribute="centerX" id="CTE-VN-nZx"/>
-                            <constraint firstItem="qWE-VJ-0yv" firstAttribute="top" secondItem="zSH-Kw-C1Z" secondAttribute="bottom" constant="82" id="OoO-VK-Hhk"/>
-                            <constraint firstItem="zSH-Kw-C1Z" firstAttribute="centerY" secondItem="8so-1n-7FW" secondAttribute="centerY" id="sl0-F9-PRv"/>
+                            <constraint firstItem="cJ0-9J-p5A" firstAttribute="trailing" secondItem="hVc-c1-lQj" secondAttribute="trailing" id="2Sq-pM-G9w"/>
+                            <constraint firstItem="cJ0-9J-p5A" firstAttribute="top" secondItem="hVc-c1-lQj" secondAttribute="top" id="GXR-Jl-9c3"/>
+                            <constraint firstItem="cJ0-9J-p5A" firstAttribute="leading" secondItem="hVc-c1-lQj" secondAttribute="leading" id="Y0c-tT-syz"/>
+                            <constraint firstItem="cJ0-9J-p5A" firstAttribute="bottom" secondItem="hVc-c1-lQj" secondAttribute="bottom" id="ul8-ML-3rr"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Прошлые вычисления" id="6ak-Vf-wHe"/>
                     <connections>
-                        <outlet property="calculationLabel" destination="zSH-Kw-C1Z" id="RtD-tx-8gf"/>
+                        <outlet property="tableView" destination="cJ0-9J-p5A" id="qNX-za-1wD"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="uku-IT-71W" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -402,9 +380,6 @@
         </systemColor>
         <systemColor name="systemMintColor">
             <color red="0.0" green="0.7803921568627451" blue="0.74509803921568629" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </systemColor>
-        <systemColor name="systemOrangeColor">
-            <color red="1" green="0.58431372549019611" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>
