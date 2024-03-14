@@ -36,8 +36,7 @@ class CalculationsListViewController: UIViewController {
         
         tableView.backgroundColor = UIColor.systemGray5
         let tableHeaderView = UIView()
-        let tableFooterView = UIView()
-        tableHeaderView.backgroundColor = UIColor.systemBlue
+        
         tableHeaderView.frame = CGRect(x: 0, y: 0, width: tableView.bounds.width, height: 30)
         tableView.tableHeaderView = tableHeaderView
         let label = UILabel()
@@ -45,9 +44,19 @@ class CalculationsListViewController: UIViewController {
         label.text = getDate()
         label.font = .systemFont(ofSize: 16)
         label.textColor = .black
-        tableHeaderView.addSubview(label)
         tableView.tableFooterView = UIView(frame: CGRect(x: 0, y: 0, width: tableView.frame.size.width, height: 1))
-       
+        
+        var countCalculations: Int
+            countCalculations = calculations.count
+            if countCalculations != 0 {
+                tableHeaderView.addSubview(label)
+                tableHeaderView.backgroundColor = UIColor.systemBlue
+            } else {
+                return
+            }
+    
+        
+        
         func getDate() -> String {
             let date = NSDate()
             let formatter = DateFormatter()
@@ -92,6 +101,7 @@ extension CalculationsListViewController: UITableViewDelegate {
 
 extension CalculationsListViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        
         return calculations.count
     }
     
