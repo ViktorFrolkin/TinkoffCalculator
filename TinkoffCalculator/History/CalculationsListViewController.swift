@@ -35,12 +35,17 @@ class CalculationsListViewController: UIViewController {
         tableView.dataSource = self
         
         tableView.backgroundColor = UIColor.systemGray5
-        let tableHeaderView = UITableView()
-        let tableFooterView = UITableView()
-        //tableHeaderView.backgroundColor = UIColor.systemBlue
+        let tableHeaderView = UIView()
+        let tableFooterView = UIView()
+        tableHeaderView.backgroundColor = UIColor.systemBlue
         tableHeaderView.frame = CGRect(x: 0, y: 0, width: tableView.bounds.width, height: 30)
         tableView.tableHeaderView = tableHeaderView
-        
+        let label = UILabel()
+        label.frame = CGRect.init(x: 10, y: 0, width: tableHeaderView.frame.width-10, height: tableHeaderView.frame.height)
+        label.text = getDate()
+        label.font = .systemFont(ofSize: 16)
+        label.textColor = .black
+        tableHeaderView.addSubview(label)
         tableView.tableFooterView = UIView(frame: CGRect(x: 0, y: 0, width: tableView.frame.size.width, height: 1))
        
         func getDate() -> String {
@@ -83,7 +88,6 @@ extension CalculationsListViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 90.0
     }
-    
 }
 
 extension CalculationsListViewController: UITableViewDataSource {
@@ -98,6 +102,8 @@ extension CalculationsListViewController: UITableViewDataSource {
         cell.configure(with: expressionToString(historyItem.expression), result: String(historyItem.result))
         return cell
     }
+   // func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+   //     return "hxx"
     
     
 }
