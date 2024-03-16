@@ -9,7 +9,7 @@ import UIKit
 
 class CalculationsListViewController: UIViewController {
     
-    var calculations: [(expression: [CalculationHistoryItem], result: Double)] = []
+    var calculations: [Calculation] = []
     
     @IBOutlet weak var calculationLabel: UILabel!
     @IBOutlet weak var tableView: UITableView!
@@ -44,7 +44,7 @@ class CalculationsListViewController: UIViewController {
         label.text = getDate()
         label.font = .systemFont(ofSize: 16)
         label.textColor = .black
-        tableView.tableFooterView = UIView(frame: CGRect(x: 0, y: 0, width: tableView.frame.size.width, height: 1))
+        tableView.tableFooterView = UIView(frame: CGRect(x: 0, y: 0, width: tableView.frame.size.width, height: 50))
         
         var countCalculations: Int
             countCalculations = calculations.count
@@ -56,14 +56,14 @@ class CalculationsListViewController: UIViewController {
             }
     
         
-        
-        func getDate() -> String {
-            let date = NSDate()
-            let formatter = DateFormatter()
-            formatter.dateFormat = "dd.MM.yyyy"
-            let formatDate = formatter.string(from: date as Date)
-            return formatDate
-        }
+          func getDate() -> String {
+                let date = NSDate()
+                let formatter = DateFormatter()
+                formatter.dateFormat = "dd.MM.yyyy"
+                let formatDate = formatter.string(from: date as Date)
+                return formatDate
+            }
+
         let nib = UINib(nibName: "HistoryTableViewCell", bundle: nil)
         tableView.register(nib, forCellReuseIdentifier: "HistoryTableViewCell")
     }
@@ -100,10 +100,16 @@ extension CalculationsListViewController: UITableViewDelegate {
 }
 
 extension CalculationsListViewController: UITableViewDataSource {
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        
-        return calculations.count
-    }
+ func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+     return calculations.count
+     }
+     
+     /*func numberOfSections(in tableView: UITableView) -> Int {
+     return calculations.count
+     }*/
+  
+    
+
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "HistoryTableViewCell", for: indexPath) as! HistoryTableViewCell
