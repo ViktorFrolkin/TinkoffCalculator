@@ -35,35 +35,26 @@ class CalculationsListViewController: UIViewController {
         tableView.dataSource = self
         
         tableView.backgroundColor = UIColor.systemGray5
-        let tableHeaderView = UIView()
+        /*let tableHeaderView = UIView()
         
         tableHeaderView.frame = CGRect(x: 0, y: 0, width: tableView.bounds.width, height: 30)
-        tableView.tableHeaderView = tableHeaderView
-        let label = UILabel()
+        tableView.tableHeaderView = tableHeaderView*/
+        /*let label = UILabel()
         label.frame = CGRect.init(x: 10, y: 0, width: tableHeaderView.frame.width-10, height: tableHeaderView.frame.height)
-        label.text = getDate()
+        //label.text = getDate()
         label.font = .systemFont(ofSize: 16)
-        label.textColor = .black
-        tableView.tableFooterView = UIView(frame: CGRect(x: 0, y: 0, width: tableView.frame.size.width, height: 50))
+        label.textColor = .black*/
+        /*tableView.tableFooterView = UIView(frame: CGRect(x: 0, y: 0, width: tableView.frame.size.width, height: 50))*/
         
-        var countCalculations: Int
+        /*var countCalculations: Int
             countCalculations = calculations.count
             if countCalculations != 0 {
                 tableHeaderView.addSubview(label)
                 tableHeaderView.backgroundColor = UIColor.systemBlue
             } else {
                 return
-            }
-    
-        
-          func getDate() -> String {
-                let date = NSDate()
-                let formatter = DateFormatter()
-                formatter.dateFormat = "dd.MM.yyyy"
-                let formatDate = formatter.string(from: date as Date)
-                return formatDate
-            }
-
+            }*/
+  
         let nib = UINib(nibName: "HistoryTableViewCell", bundle: nil)
         tableView.register(nib, forCellReuseIdentifier: "HistoryTableViewCell")
     }
@@ -93,7 +84,22 @@ class CalculationsListViewController: UIViewController {
         return result
     }
 }
+
+extension Date {
+    func getDate() -> String {
+          let date = NSDate()
+          let formatter = DateFormatter()
+          formatter.dateFormat = "dd.MM.yyyy"
+          let formatDate = formatter.string(from: date as Date)
+          return formatDate
+      }
+}
+
 extension CalculationsListViewController: UITableViewDelegate {
+    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        return  Date().getDate()
+    }
+    
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 90.0
     }
@@ -101,12 +107,12 @@ extension CalculationsListViewController: UITableViewDelegate {
 
 extension CalculationsListViewController: UITableViewDataSource {
  func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-     return calculations.count
+     return 1
      }
      
-     /*func numberOfSections(in tableView: UITableView) -> Int {
+    func numberOfSections(in tableView: UITableView) -> Int {
      return calculations.count
-     }*/
+     }
   
     
 
