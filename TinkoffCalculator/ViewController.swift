@@ -49,7 +49,7 @@ class ViewController: UIViewController {
     var calculationHistory: [CalculationHistoryItem] = []
     var calculations: [Calculation] = []
     
-    let calculationHistoryStorage = CalculationHistoryStorage()
+   let calculationHistoryStorage = CalculationHistoryStorage()
     
     @IBAction func buttonPressed(_ sender: UIButton) {
     
@@ -103,6 +103,7 @@ class ViewController: UIViewController {
         do {
             let result = try calculate()
             label.text = numberFormatter.string(from:   NSNumber(value: result))
+            
             let newCalculation = Calculation(expression: calculationHistory, result: result)
             calculations.append(newCalculation)
             calculationHistoryStorage.setHistory(calculation: calculations)

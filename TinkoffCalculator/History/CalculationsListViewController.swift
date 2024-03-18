@@ -111,8 +111,8 @@ extension CalculationsListViewController: UITableViewDataSource {
      }
      
     func numberOfSections(in tableView: UITableView) -> Int {
-     return calculations.count
-     }
+    return calculations.count
+}
   
     
 
@@ -120,7 +120,7 @@ extension CalculationsListViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "HistoryTableViewCell", for: indexPath) as! HistoryTableViewCell
         
-        let historyItem = calculations[indexPath.row]
+        let historyItem = calculations[indexPath.section]
         cell.configure(with: expressionToString(historyItem.expression), result: String(historyItem.result))
         return cell
     }
