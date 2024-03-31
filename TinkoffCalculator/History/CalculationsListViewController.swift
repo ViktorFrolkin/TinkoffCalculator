@@ -87,9 +87,15 @@ class CalculationsListViewController: UIViewController {
 }
 
 
+
 extension CalculationsListViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        return  "Дата вычисления"
+        let dateFirst = calculations[section].date
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "dd-MM-yyyy"
+        let newDate = dateFormatter.string(from: dateFirst)
+        
+        return  newDate
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -111,10 +117,13 @@ extension CalculationsListViewController: UITableViewDataSource {
 
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
         let cell = tableView.dequeueReusableCell(withIdentifier: "HistoryTableViewCell", for: indexPath) as! HistoryTableViewCell
         
         let historyItem = calculations[indexPath.section]
         cell.configure(with: expressionToString(historyItem.expression), result: String(historyItem.result))
+        
+        
         
         return cell
     }
