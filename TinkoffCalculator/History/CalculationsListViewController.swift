@@ -79,25 +79,17 @@ class CalculationsListViewController: UIViewController {
                 
             case let .operation(value):
                 result += value.rawValue + " "
+                
             }
         }
         return result
     }
 }
 
-extension Date {
-    func getDate() -> String {
-          let date = NSDate()
-          let formatter = DateFormatter()
-          formatter.dateFormat = "dd.MM.yyyy"
-          let formatDate = formatter.string(from: date as Date)
-          return formatDate
-      }
-}
 
 extension CalculationsListViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        return  Date().getDate()
+        return  "Дата вычисления"
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -111,7 +103,8 @@ extension CalculationsListViewController: UITableViewDataSource {
      }
      
     func numberOfSections(in tableView: UITableView) -> Int {
-    return calculations.count
+       
+        return calculations.count
 }
   
     
@@ -122,6 +115,7 @@ extension CalculationsListViewController: UITableViewDataSource {
         
         let historyItem = calculations[indexPath.section]
         cell.configure(with: expressionToString(historyItem.expression), result: String(historyItem.result))
+        
         return cell
     }
 

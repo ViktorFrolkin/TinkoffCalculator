@@ -43,9 +43,11 @@ enum CalculationHistoryItem {
     
     case number (Double)
     case operation (Operation)
+    
 }
 
 class ViewController: UIViewController {
+    var shared = ViewController.self
     var calculationHistory: [CalculationHistoryItem] = []
     var calculations: [Calculation] = []
     
@@ -103,8 +105,12 @@ class ViewController: UIViewController {
         do {
             let result = try calculate()
             label.text = numberFormatter.string(from:   NSNumber(value: result))
-            
-            let newCalculation = Calculation(expression: calculationHistory, result: result)
+            let dateCalculation = Date()
+//            let dateFormatter = DateFormatter()
+//            dateFormatter.dateFormat = "dd-MM-yyyy"
+//            let newDate = dateFormatter.string(from: date)
+    
+            let newCalculation = Calculation(expression: calculationHistory, result: result, date: dateCalculation )
             calculations.append(newCalculation)
             calculationHistoryStorage.setHistory(calculation: calculations)
         } catch {
