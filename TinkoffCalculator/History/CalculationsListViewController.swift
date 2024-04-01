@@ -92,7 +92,7 @@ extension CalculationsListViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         let dateFirst = calculations[section].date
         let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "dd-MM-yyyy"
+        dateFormatter.dateFormat = "dd.MM.yyyy"
         let newDate = dateFormatter.string(from: dateFirst)
         
         return  newDate
