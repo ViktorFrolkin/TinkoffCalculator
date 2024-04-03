@@ -90,7 +90,7 @@ class CalculationsListViewController: UIViewController {
 
 extension CalculationsListViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        let dateFirst = Date()  //calculations[section].date
+        let dateFirst = calculations[section].date
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "dd.MM.yyyy"
         let newDate = dateFormatter.string(from: dateFirst)
@@ -105,13 +105,13 @@ extension CalculationsListViewController: UITableViewDelegate {
 
 extension CalculationsListViewController: UITableViewDataSource {
  func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-     return  calculations.count //1
+     return  1
      }
      
-   // func numberOfSections(in tableView: UITableView) -> Int {
+    func numberOfSections(in tableView: UITableView) -> Int {
        
-   //     return 1 // calculations.count
-//}
+        return calculations.count
+}
   
     
 
@@ -120,7 +120,7 @@ extension CalculationsListViewController: UITableViewDataSource {
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "HistoryTableViewCell", for: indexPath) as! HistoryTableViewCell
         
-        let historyItem = calculations[indexPath.row]
+        let historyItem = calculations[indexPath.section]
         cell.configure(with: expressionToString(historyItem.expression), result: String(historyItem.result))
         
         
