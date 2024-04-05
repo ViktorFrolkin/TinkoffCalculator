@@ -33,4 +33,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 
 }
-
+protocol LongPressGestureAdder: UIGestureRecognizerDelegate {
+    func addGestureRecognizer() 
+     
+}

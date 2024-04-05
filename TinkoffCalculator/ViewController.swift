@@ -7,6 +7,7 @@
 
 import UIKit
 
+
 enum CalculationError:  Error {
     case divideByZero
     
@@ -51,6 +52,17 @@ class ViewController: UIViewController {
     var calculationHistory: [CalculationHistoryItem] = []
     var calculations: [Calculation] = []
     
+    private let alertView: AlertView = {
+        let screenBounds = UIScreen.main.bounds
+        let alertHeight: CGFloat = 100
+        let alertWidth: CGFloat = screenBounds.width - 40
+        let x: CGFloat = screenBounds.width / 2 - alertWidth / 2
+        let y: CGFloat = screenBounds.height / 2 - alertHeight / 2
+        let alertFrame = CGRect(x: x, y: y, width: alertWidth, height: alertHeight)
+        let alertView = AlertView(frame: alertFrame)
+        return alertView
+    }()
+    
    let calculationHistoryStorage = CalculationHistoryStorage()
     
     @IBAction func buttonPressed(_ sender: UIButton) {
@@ -70,7 +82,10 @@ class ViewController: UIViewController {
             label.text?.append(buttonText)
         }
         
-        
+        if label.text == "3,141592" {
+            animateAlert()
+        }
+        sender.animateTap()
     }
     
     @IBAction func operationButtonPressed(_ sender: UIButton) {
@@ -115,8 +130,11 @@ class ViewController: UIViewController {
             calculationHistoryStorage.setHistory(calculation: calculations)
         } catch {
             label.text = "Ошибка"
+            animateBackground()
+            label.shake()
         }
         calculationHistory.removeAll()
+        
     }
    
     
@@ -143,6 +161,17 @@ class ViewController: UIViewController {
         resetLabelText()
         calculations = calculationHistoryStorage.loadHistory()
         historyButton.accessibilityIdentifier = "historyButton"
+        
+        view.addSubview(alertView)
+        alertView.alpha = 0
+        alertView.alertText = "Вы нашли пасхалку!"
+        
+        view.subviews.forEach {
+            if type(of: $0) == UIButton.self {
+                $0.layer.cornerRadius = 45
+            }
+        }
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -184,5 +213,78 @@ class ViewController: UIViewController {
         label.text = "0"
     }
 
+    func animateAlert() {
+        if !view.contains(alertView){
+            alertView.alpha = 0
+            alertView.center = view.center
+            view.addSubview(alertView)
+        }
+        
+        //        UIView.animate(withDuration: 0.5) {
+        //            self.alertView.alpha = 1
+        //        }completion: { (_) in
+        //            UIView.animate(withDuration: 0.5) {
+        //                var newCenter = self.label.center
+        //                newCenter.y -= self.alertView.bounds.height
+        //                self.alertView.center = newCenter
+        
+        UIView.animateKeyframes(withDuration: 2.0, delay: 0.5) {
+            UIView.addKeyframe(withRelativeStartTime: 0, relativeDuration: 0.5) {
+                self.alertView.alpha = 1
+                
+            }
+            UIView.addKeyframe(withRelativeStartTime: 0.5, relativeDuration: 0.5) {
+                var newCenter = self.label.center
+                newCenter.y -= self.alertView.bounds.height
+                self.alertView.center = newCenter
+                
+            }
+        }
+    }
+    func animateBackground () {
+        let animation = CABasicAnimation(keyPath: "backgroundColor")
+        animation.duration = 1
+        animation.fromValue = UIColor.white.cgColor
+        animation.toValue = UIColor.red.cgColor
+        
+        view.layer.add(animation,forKey: "backgroundColor")
+        //view.layer.backgroundColor = UIColor.blue.cgColor
+    }
+}
+
+func startAnimation() {
+    
+}
+
+
+extension UILabel {
+    func shake() {
+        let animation = CABasicAnimation(keyPath: "position")
+        animation.duration = 0.05
+        animation.repeatCount = 5
+        animation.autoreverses = true
+        animation.fromValue = NSValue(cgPoint: CGPoint(x: center.x - 5, y: center.y))
+        animation.toValue = NSValue(cgPoint: CGPoint(x: center.x + 5, y: center.y))
+        
+        layer.add(animation, forKey: "position")
+    }
+}
+extension UIButton {
+    func animateTap() {
+        let scaleAnimation = CAKeyframeAnimation(keyPath: "transform.scale" )
+        scaleAnimation.values = [1, 0.9, 1]
+        scaleAnimation.keyTimes = [0, 0.2, 1]
+        
+        let opacityAnimation = CAKeyframeAnimation(keyPath: "opacity")
+        opacityAnimation.values = [0.4, 0.8, 1]
+        opacityAnimation.keyTimes = [0, 0.2, 1]
+        
+        let animationGroup = CAAnimationGroup()
+        animationGroup.duration = 1.5
+        animationGroup.animations = [scaleAnimation, opacityAnimation]
+        
+        layer.add(animationGroup, forKey: "groupAnimation")
+        
+    }
 }
 
