@@ -7,6 +7,13 @@
 
 import UIKit
 
+protocol LongPressViewProtocol {
+    var shared: UIView { get }
+    
+    func startAnimation()
+    func stopAnimation()
+}
+
 
 enum CalculationError:  Error {
     case divideByZero
@@ -47,10 +54,33 @@ enum CalculationHistoryItem {
     
 }
 
-class ViewController: UIViewController {
-    var shared = ViewController.self
+class ViewController: UIViewController, LongPressGestureAdder {
+    func addGestureRecognizer() {
+       
+    }
+    
+
+    //var shared = ViewController.self
     var calculationHistory: [CalculationHistoryItem] = []
     var calculations: [Calculation] = []
+    
+
+        let visualEffectView: UIVisualEffectView = {
+            let blurEffect = UIBlurEffect(style: .dark)
+            let view = UIVisualEffectView(effect: blurEffect)
+            view.translatesAutoresizingMaskIntoConstraints = false
+            return view
+        }()
+    
+    func setupVisualEffectView() {
+                view.addSubview(visualEffectView)
+                visualEffectView.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
+                visualEffectView.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
+                visualEffectView.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
+                visualEffectView.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
+                visualEffectView.alpha = 0
+        
+            }
     
     private let alertView: AlertView = {
         let screenBounds = UIScreen.main.bounds
@@ -172,8 +202,19 @@ class ViewController: UIViewController {
             }
         }
         
+        let longPress = UILongPressGestureRecognizer(target: self, action: #selector (actionLongPress))
+        longPress.minimumPressDuration = 0.5
+        view.addGestureRecognizer(longPress)
     }
     
+    @objc func actionLongPress(Recognizer:  UILongPressGestureRecognizer) {
+    if Recognizer.state == .began {
+        startAnimation()
+    }
+    else if Recognizer.state == .ended {
+        stopAnimation()
+    }
+}
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         navigationController?.setNavigationBarHidden(true, animated: false)
@@ -253,7 +294,7 @@ class ViewController: UIViewController {
 }
 
 func startAnimation() {
-    
+
 }
 
 
@@ -287,4 +328,31 @@ extension UIButton {
         
     }
 }
+
+
+
+
+extension ViewController: LongPressViewProtocol {
+    var shared: UIView {
+        let shared = visualEffectView
+        return shared
+}
+ 
+    func startAnimation() {
+        print("Start Animation")
+       
+        setupVisualEffectView()
+        UIView.animate(withDuration: 2){
+        self.shared.alpha = 1
+            
+        }
+    }
+    
+    func stopAnimation() {
+        print("Stop animation")
+       shared.removeFromSuperview()
+    }
+    
+}
+
 

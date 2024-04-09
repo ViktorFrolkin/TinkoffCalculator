@@ -7,8 +7,14 @@
 
 import UIKit
 
+protocol LongPressGestureAdder: UIGestureRecognizerDelegate {
+    func addGestureRecognizer()
+     
+}
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
+    
+    var delegate: LongPressGestureAdder?
 
 
 
@@ -33,7 +39,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 
 }
-protocol LongPressGestureAdder: UIGestureRecognizerDelegate {
-    func addGestureRecognizer() 
-     
-}
+
+
+
